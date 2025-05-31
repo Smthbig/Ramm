@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shape Appearance Corner Sizes -->
+    <dimen name="shape_small_corner_size">4dp</dimen>
+    <dimen name="shape_medium_corner_size">8dp</dimen>
+    <dimen name="shape_large_corner_size">12dp</dimen>
+</resources>

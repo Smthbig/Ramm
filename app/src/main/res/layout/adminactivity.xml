@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:background="?attr/colorSurface"
+     android:padding="24dp"
+     android:orientation="vertical">
+
+    <!-- Heading -->
+    <com.google.android.material.textview.MaterialTextView
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:gravity="center"
+         android:paddingBottom="24dp"
+         android:textSize="26sp"
+         android:textColor="?attr/colorPrimary"
+         android:id="@+id/tv_heading"
+         android:text="Clinic Dashboard"
+         android:textStyle="bold" />
+
+    <!-- Medicine Inventory Button -->
+    <com.google.android.material.button.MaterialButton
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:layout_marginBottom="16dp"
+         android:id="@+id/btn_list"
+         android:text="Medicine Inventory"
+         style="@style/Widget.Material3.Button"
+         android:textSize="18sp" />
+
+    <!-- Sale Report Button -->
+    <com.google.android.material.button.MaterialButton
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:layout_marginBottom="16dp"
+         android:id="@+id/btn_purchh"
+         android:text="Sale Report"
+         style="@style/Widget.Material3.Button.TonalButton"
+         android:textSize="18sp" />
+
+    <!-- Backup/Restore Button -->
+    <com.google.android.material.button.MaterialButton
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:layout_marginBottom="16dp"
+         android:id="@+id/btn_backup_restore"
+         android:text="Backup / Restore"
+         style="@style/Widget.Material3.Button.OutlinedButton"
+         android:textSize="18sp" />
+
+    <!-- Footer -->
+    <com.google.android.material.textview.MaterialTextView
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:gravity="center"
+         android:textSize="12sp"
+         android:textColor="?attr/colorOnSurfaceVariant"
+         android:layout_marginTop="12dp"
+         android:id="@+id/tv_footer"
+         android:text="Powered by Mohan" />
+
+</LinearLayout>

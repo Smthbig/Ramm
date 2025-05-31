@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Ramm Health Care</string>
+
+    <!-- Activity Titles -->
+    <string name="title_activity_main">Home</string>
+    <string name="title_activity_patient">Patient Details</string>
+    <string name="title_activity_admin">Admin Panel</string>
+    <string name="title_activity_history">Visit History</string>
+
+    <!-- Common UI -->
+    <string name="btn_submit">Submit</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_retry">Retry</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_logout">Logout</string>
+
+    <!-- Messages -->
+    <string name="msg_hello_world">Hello World!</string>
+    <string name="msg_loading">Loading...</string>
+    <string name="msg_saved_successfully">Saved successfully</string>
+    <string name="msg_insert_failed">Insert failed</string>
+    <string name="msg_enter_name">Please enter name</string>
+    <string name="msg_qr_failed">Failed to generate QR</string>
+    <string name="msg_login_failed">Google Sign-In failed</string>
+
+    <!-- Labels -->
+    <string name="label_name">Name</string>
+    <string name="label_age">Age</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_payment_method">Payment Method</string>
+    <string-array name="filter_options">
+        <item>Name</item>
+        <item>Age</item>
+        <item>Phone</item>
+        <item>Amount Range</item>
+    </string-array>
+
+</resources>
