@@ -21,7 +21,7 @@ val signingProps = if (isCi) {
         }
     }
     mapOf(
-        "RELEASE_STORE_FILE" to props["RELEASE_STORE_FILE"]?.toString() ?: "keystore/ramm-release-key.jks",
+        "RELEASE_STORE_FILE" to (props["RELEASE_STORE_FILE"]?.toString() ?: "keystore/ramm-release-key.jks"),
         "RELEASE_STORE_PASSWORD" to props["RELEASE_STORE_PASSWORD"]?.toString(),
         "RELEASE_KEY_ALIAS" to props["RELEASE_KEY_ALIAS"]?.toString(),
         "RELEASE_KEY_PASSWORD" to props["RELEASE_KEY_PASSWORD"]?.toString()
