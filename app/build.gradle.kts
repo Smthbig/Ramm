@@ -4,11 +4,28 @@ plugins {
     id("com.android.application")
 }
 
-val secretProps = Properties().apply {
-    val secretPropsFile = rootProject.file("secret.properties")
-    if (secretPropsFile.exists()) {
-        load(secretPropsFile.inputStream())
+val isCi = System.getenv("CI") != null
+
+val signingProps = if (isCi) {
+    mapOf(
+        "RELEASE_STORE_FILE" to "app/ramm-release-key.jks",
+        "RELEASE_STORE_PASSWORD" to System.getenv("RELEASE_STORE_PASSWORD"),
+        "RELEASE_KEY_ALIAS" to System.getenv("RELEASE_KEY_ALIAS"),
+        "RELEASE_KEY_PASSWORD" to System.getenv("RELEASE_KEY_PASSWORD")
+    )
+} else {
+    val propsFile = rootProject.file("secret.properties")
+    val props = Properties().apply {
+        if (propsFile.exists()) {
+            load(propsFile.inputStream())
+        }
     }
+    mapOf(
+        "RELEASE_STORE_FILE" to props["RELEASE_STORE_FILE"]?.toString(),
+        "RELEASE_STORE_PASSWORD" to props["RELEASE_STORE_PASSWORD"]?.toString(),
+        "RELEASE_KEY_ALIAS" to props["RELEASE_KEY_ALIAS"]?.toString(),
+        "RELEASE_KEY_PASSWORD" to props["RELEASE_KEY_PASSWORD"]?.toString()
+    )
 }
 
 android {
@@ -22,9 +39,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables.useSupportLibrary = true
     }
 
     compileOptions {
@@ -39,10 +54,13 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(secretProps["RELEASE_STORE_FILE"]?.toString() ?: "")
-            storePassword = secretProps["RELEASE_STORE_PASSWORD"]?.toString()
-            keyAlias = secretProps["RELEASE_KEY_ALIAS"]?.toString()
-            keyPassword = secretProps["RELEASE_KEY_PASSWORD"]?.toString()
+            val storePath = signingProps["RELEASE_STORE_FILE"]
+            if (!storePath.isNullOrBlank()) {
+                storeFile = file(storePath)
+            }
+            storePassword = signingProps["RELEASE_STORE_PASSWORD"]
+            keyAlias = signingProps["RELEASE_KEY_ALIAS"]
+            keyPassword = signingProps["RELEASE_KEY_PASSWORD"]
         }
     }
 
