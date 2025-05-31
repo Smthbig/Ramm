@@ -3,9 +3,8 @@ name: Android Release Build
 on:
   push:
     tags:
-      - 'v*'  # Runs on version tags like v1.0, v2.3.1
-
-  workflow_dispatch:  #  Enables manual trigger from GitHub Actions UI
+      - 'v*'  # e.g., v1.0, v2.3.1
+  workflow_dispatch:  # Manual trigger support
 
 jobs:
   build:
@@ -24,11 +23,12 @@ jobs:
 
       - name: Decode keystore
         run: |
-          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > app/ramm-release-key.jks
+          mkdir -p keystore
+          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > keystore/ramm-release-key.jks
 
-      - name: Setup gradle.properties
+      - name: Configure release keystore using secrets
         run: |
-          echo "RELEASE_STORE_FILE=app/ramm-release-key.jks" >> gradle.properties
+          echo "RELEASE_STORE_FILE=keystore/ramm-release-key.jks" >> gradle.properties
           echo "RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}" >> gradle.properties
           echo "RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}" >> gradle.properties
           echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> gradle.properties
@@ -37,7 +37,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Release APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew clean assembleRelease --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
