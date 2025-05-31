@@ -1,79 +1,79 @@
-# 🏥 Ramm Healthcare – Smart Clinic Management App
-
-_A modern, offline-first clinic management app for doctors, built with Material You (Material 3) design._
+<h1 align="center">🏥 Ramm Healthcare – Smart Clinic Management App</h1>
+<p align="center"><em>A modern, offline-first clinic management app built with Material You (Material 3) design – for Indian doctors and small clinics.</em></p>
 
 ---
 
 ## 🚀 Features
 
 ### 🧑‍⚕️ Patient Visit Management
-- Add/update patient details: name, age (Y/M/D), visit date.
+- Add/update patient details: name, age (Y/M/D), and visit date.
 - Track payment mode: Cash / UPI / Online.
-- Auto-formatted visit history.
-- Long press any visit to **Edit/Delete** patient data.
+- Auto-formatted visit history view.
+- Long press any visit to **Edit/Delete** full patient data.
 
 ### 💊 Medicine Billing System
-- Dynamic medicine picker with search.
-- Add multiple medicines:
+- Dynamic medicine picker dialog with search.
+- Add multiple medicines with:
   - Quantity
   - Price per unit
   - Discount (%)
-  - Auto-calculated final amount
-- Live medicine cart preview and deletion.
-- Payment mode selection for medicine billing.
-- Grand total auto-calculation.
+  - Final amount auto-calculated
+- Live medicine cart preview with delete support.
+- Grand total auto-calculated with payment mode selection.
 
-### 📚 Visit History with Filters
-- Beautiful **CardView** display.
+### 📚 Visit History & Filters
+- Clean **CardView** display for visits.
 - Filter by:
-  - 📅 Date range (using pickers)
-  - 🔍 Keyword (name, phone, age, amount)
-- Full patient + bill summary in one view.
+  - 📅 Date Range
+  - 🔍 Keyword search (name, age, phone, amount)
+- Full patient + medicine summary in one screen.
 
 ### 🖋 Editable Record Dialogs
-- Long press visit entry to edit:
-  - Name, Age, Date, Payment
-  - Medicines, Discounts, Amounts
-- Fully styled, scrollable Material 3 dialog.
-- Autofill selected data for quick edits.
+- Long-press to edit:
+  - Name, Age, Visit Date, Payment Mode
+  - Medicine list, quantity, discounts
+- Rounded, Material 3-styled dialogs with scroll and autofill.
 
-### 🧾 📤 Export to PDF (New!)
-- Generate and export visit and medicine records as **PDF** for sharing or printing.
-- Clean, print-friendly format with all necessary data.
-- Fully offline – no cloud dependency.
+### 🧾 📤 Export to PDF (NEW!)
+- Export full visit and medicine bill records as **PDF**.
+- Print-friendly format.
+- Works fully offline – no cloud storage needed.
 
 ### 🎨 Material You UI (Material 3)
-- Modern Material components (Buttons, Dialogs, TextInput).
+- Rounded components, clean layout.
 - Light/Dark mode support.
-- Responsive across all Android screen sizes.
-- Rounded, clean design everywhere.
+- Responsive design for all screen sizes.
 
 ### ⚙ Intelligent UX
-- Auto-update amounts on quantity/discount change.
-- Smart search filtering.
-- Live cart calculations.
-- EditText validations and user-friendly errors.
+- Live calculation on quantity/discount change.
+- Dynamic search UI.
+- Validations on inputs.
+- Smart defaults for faster entry.
 
 ### 🔐 Privacy & Offline-first
-- 100% offline via **SQLite**
-- No internet required – ideal for rural clinics.
-- Zero data sharing or cloud syncing by default.
+- 100% local data via **SQLite**
+- No Internet required.
+- No cloud, full privacy – ideal for rural clinics.
 
 ---
 
 ## 📸 Screenshots
 
-| Home | Add Patient | Medicine Picker |
-|------|-------------|-----------------|
-| ![](ss/ss1.jpeg) | ![](ss/ss2.jpeg) | ![](ss/ss3.jpeg) |
-
-| Billing Summary | Visit History | Filters |
-|-----------------|----------------|---------|
-| ![](ss/ss4.jpeg) | ![](ss/ss5.jpeg) | ![](ss/ss6.jpeg) |
-
-| Editable Dialog | Dark Mode | Export to PDF |
-|------------------|------------|----------------|
-| ![](ss/ss7.jpeg) | ![](ss/ss8.jpeg) | ![](ss/ss9.jpeg) |
+<p align="center">
+  <img src="ss/ss1.jpeg" alt="Home Screen" width="30%" />
+  <img src="ss/ss2.jpeg" alt="Add Patient" width="30%" />
+  <img src="ss/ss3.jpeg" alt="Medicine Picker" width="30%" />
+</p>
+<p align="center">
+  <img src="ss/ss4.jpeg" alt="Billing Summary" width="30%" />
+  <img src="ss/ss5.jpeg" alt="Visit History" width="30%" />
+  <img src="ss/ss6.jpeg" alt="Filters" width="30%" />
+</p>
+<p align="center">
+  <img src="ss/ss7.jpeg" alt="Editable Dialog" width="30%" />
+  <img src="ss/ss8.jpeg" alt="Dark Mode" width="30%" />
+  <img src="ss/ss9.jpeg" alt="Export to PDF" width="30%" />
+</p>
 
 ---
 
@@ -81,43 +81,43 @@ _A modern, offline-first clinic management app for doctors, built with Material 
 
 | Technology         | Purpose                        |
 |--------------------|--------------------------------|
-| Java               | Core app logic                 |
+| Java               | Core application logic         |
 | SQLite             | Local data storage             |
-| SharedPreferences  | Config values & flags          |
+| SharedPreferences  | Configuration flags & storage  |
 | Material 3 (MDC)   | UI components & themes         |
-| RecyclerView       | Dynamic lists                  |
-| BottomSheetDialog  | Medicine selector              |
-| Dialogs & Alerts   | Edits, confirmations           |
-| CardView           | Visit entry display            |
+| RecyclerView       | Dynamic medicine list          |
+| BottomSheetDialog  | Medicine selection modal       |
+| Dialogs & Alerts   | Edits and confirmations        |
+| CardView           | Visit card layout              |
 | Lottie (Optional)  | Animations                     |
 
 ---
 
 ## 🔮 Upcoming Features
 
-- 🗃 Export to **Excel**  
-- ☁️ Cloud / Local DB backup & restore  
-- 📊 Visit pattern analytics dashboard  
-- 👥 Multi-user login (doctor/staff mode)  
-- 🔄 Google Drive / Firebase sync  
-- 📱 Tablet optimization + RTL support  
+- 🗃 Export to **Excel**
+- ☁️ Backup/Restore (local & cloud)
+- 📈 Visit analytics dashboard
+- 👨‍⚕️ Multi-user login (Doctor/Staff mode)
+- 🔄 Google Drive/Firebase sync
+- 📱 Tablet optimization & RTL support
 
 ---
 
 ## 🏗 How to Build
 
 1. Clone or download this repository.
-2. Open in **Android Studio** or any Java-supported IDE.
-3. Ensure **API 23+** (Android 6.0+) is used.
-4. Build → Install APK → You're ready to go!
+2. Open the project in **Android Studio** (or any compatible Java IDE).
+3. Ensure `compileSdk` and `targetSdk` are **API 23+ (Android 6.0 or above)**.
+4. Click **Build → Build APK(s)** and install on your Android device.
 
 ---
 
 ## 👨‍🔬 Developer Info
 
 **👨‍💻 Author**: *Ramm Healthcare Dev Team*  
-**📌 Purpose**: Provide secure, smart, and simple clinic software for Indian doctors and general practitioners.
+**📌 Mission**: Empower clinics with fast, simple, and fully offline management software tailored for India’s local healthcare practices.
 
-> **Note:** Your clinic data stays on your device – no internet or cloud dependency. Maximum privacy and offline capability.
+> 💡 *This app stores everything securely on your device — no internet required. 100% privacy, zero data sharing.*
 
 ---
