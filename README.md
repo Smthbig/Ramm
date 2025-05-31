@@ -60,19 +60,19 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="ss/ss1.jpeg" alt="Home Screen" width="30%" />
-  <img src="ss/ss2.jpeg" alt="Add Patient" width="30%" />
-  <img src="ss/ss3.jpeg" alt="Medicine Picker" width="30%" />
+  <img src="ss/ss1.jpg" alt="Home Screen" width="30%" />
+  <img src="ss/ss2.jpg" alt="Add Patient" width="30%" />
+  <img src="ss/ss3.jpg" alt="Medicine Picker" width="30%" />
 </p>
 <p align="center">
-  <img src="ss/ss4.jpeg" alt="Billing Summary" width="30%" />
-  <img src="ss/ss5.jpeg" alt="Visit History" width="30%" />
-  <img src="ss/ss6.jpeg" alt="Filters" width="30%" />
+  <img src="ss/ss4.jpg" alt="Billing Summary" width="30%" />
+  <img src="ss/ss5.jpg" alt="Visit History" width="30%" />
+  <img src="ss/ss6.jpg" alt="Filters" width="30%" />
 </p>
 <p align="center">
-  <img src="ss/ss7.jpeg" alt="Editable Dialog" width="30%" />
-  <img src="ss/ss8.jpeg" alt="Dark Mode" width="30%" />
-  <img src="ss/ss9.jpeg" alt="Export to PDF" width="30%" />
+  <img src="ss/ss7.jpg" alt="Editable Dialog" width="30%" />
+  <img src="ss/ss8.jpg" alt="Dark Mode" width="30%" />
+  <img src="ss/ss9.jpg" alt="Export to PDF" width="30%" />
 </p>
 
 ---
