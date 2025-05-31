@@ -31,6 +31,39 @@
     <color name="md_theme_surfaceVariant">#CFD8DC</color>
     <color name="md_theme_onSurfaceVariant">#37474F</color>
 
+    <!-- Missing high contrast colors (added to fix release build lint issues) -->
+    <color name="md_theme_primaryContainer_highContrast">#90CAF9</color>
+    <color name="md_theme_onPrimaryContainer_highContrast">#001B4A</color>
+
+    <color name="md_theme_secondary_highContrast">#B2EBF2</color>
+    <color name="md_theme_onSecondary_highContrast">#004D40</color>
+    <color name="md_theme_secondaryContainer_highContrast">#80DEEA</color>
+    <color name="md_theme_onSecondaryContainer_highContrast">#002F2C</color>
+
+    <color name="md_theme_tertiary_highContrast">#A5D6A7</color>
+    <color name="md_theme_onTertiary_highContrast">#1B5E20</color>
+    <color name="md_theme_tertiaryContainer_highContrast">#81C784</color>
+    <color name="md_theme_onTertiaryContainer_highContrast">#003314</color>
+
+    <color name="md_theme_error_highContrast">#EF9A9A</color>
+    <color name="md_theme_onError_highContrast">#B71C1C</color>
+    <color name="md_theme_errorContainer_highContrast">#FFCDD2</color>
+    <color name="md_theme_onErrorContainer_highContrast">#8B0000</color>
+
+    <color name="md_theme_background_highContrast">#121212</color>
+    <color name="md_theme_onBackground_highContrast">#FFFFFF</color>
+    <color name="md_theme_surface_highContrast">#1E1E1E</color>
+    <color name="md_theme_onSurface_highContrast">#E0E0E0</color>
+
+    <color name="md_theme_surfaceVariant_highContrast">#37474F</color>
+    <color name="md_theme_onSurfaceVariant_highContrast">#ECEFF1</color>
+    <color name="md_theme_outline_highContrast">#B0BEC5</color>
+    <color name="md_theme_outlineVariant_highContrast">#78909C</color>
+
+    <color name="md_theme_inverseSurface_highContrast">#ECEFF1</color>
+    <color name="md_theme_inverseOnSurface_highContrast">#263238</color>
+    <color name="md_theme_inversePrimary_highContrast">#64B5F6</color>
+
     <!-- Outlines & Inverses -->
     <color name="md_theme_outline">#90A4AE</color>
     <color name="md_theme_outlineVariant">#B0BEC5</color>
@@ -91,8 +124,9 @@
 
     <color name="md_theme_tertiaryFixedDim">#A5D6A7</color> <!-- Soft green -->
     <color name="md_theme_onTertiaryFixedVariant">#1B5E20</color>
-
-    <!-- State Colors -->
+    <color name="md_theme_primary_highContrast">#BBDEFB</color>
+    <color name="md_theme_onPrimary_highContrast">#0D47A1</color>
+    
     <color name="success">#388E3C</color>
     <color name="warning">#FFA000</color>
     <color name="info">#0288D1</color>
