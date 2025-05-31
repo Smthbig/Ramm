@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,11 +32,16 @@ public class VisitHistoryActivity extends AppCompatActivity {
     private Spinner spinnerFilterOptions;
     private ListView listHistory;
     private ArrayList<HashMap<String, Object>> currentList = new ArrayList<>();
+    private ArrayList<HashMap<String, Object>> fullList = new ArrayList<>();
+    private SimpleAdapter adapter;
+
+    private final String[] filterOptions = {"Name", "Age", "Phone", "Amount"};
+    private final String[] filterHints = {
+        "Search Name", "Search Age", "Search Phone", "Min-Max (e.g. 100-500)"
+    };
 
     private DBHelper dbHelper;
     private Calendar calendar = Calendar.getInstance();
-    private ArrayList<HashMap<String, Object>> fullList = new ArrayList<>();
-    private SimpleAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +58,11 @@ public class VisitHistoryActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
-        etFromDate.setOnClickListener(v -> showDateDialog(etFromDate));
-        etToDate.setOnClickListener(v -> showDateDialog(etToDate));
-
-        String[] filterHints = {
-            "Search Name", "Search Age", "Search Phone", "Min-Max (e.g. 100-500)"
-        };
+        // Spinner Setup
+        ArrayAdapter<String> spinnerAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, filterOptions);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerFilterOptions.setAdapter(spinnerAdapter);
 
         spinnerFilterOptions.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -72,6 +75,9 @@ public class VisitHistoryActivity extends AppCompatActivity {
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {}
                 });
+
+        etFromDate.setOnClickListener(v -> showDateDialog(etFromDate));
+        etToDate.setOnClickListener(v -> showDateDialog(etToDate));
 
         btnFilter.setOnClickListener(
                 v -> {
@@ -165,8 +171,9 @@ public class VisitHistoryActivity extends AppCompatActivity {
     private void filterByKeyword(String keyword) {
         ArrayList<HashMap<String, Object>> filtered = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
+        int selectedFilter = spinnerFilterOptions.getSelectedItemPosition();
 
-        if (keyword.contains("-")) {
+        if (selectedFilter == 3 && keyword.contains("-")) { // Amount range
             try {
                 String[] parts = keyword.split("-");
                 float min = Float.parseFloat(parts[0].trim());
@@ -183,11 +190,17 @@ public class VisitHistoryActivity extends AppCompatActivity {
                 toast("Invalid amount format");
             }
         } else {
+            String column =
+                    switch (selectedFilter) {
+                        case 1 -> "age";
+                        case 2 -> "phone";
+                        default -> "name";
+                    };
             String search = "%" + keyword + "%";
             Cursor cursor =
                     db.rawQuery(
-                            "SELECT * FROM patients WHERE name LIKE ? OR phone LIKE ? OR age LIKE ? ORDER BY id DESC",
-                            new String[] {search, search, search});
+                            "SELECT * FROM patients WHERE " + column + " LIKE ? ORDER BY id DESC",
+                            new String[] {search});
             while (cursor.moveToNext()) {
                 filtered.add(buildMap(cursor));
             }
@@ -269,23 +282,18 @@ public class VisitHistoryActivity extends AppCompatActivity {
         container.setOrientation(LinearLayout.VERTICAL);
         container.setPadding(48, 48, 48, 32);
 
-        // Fields
         TextInputEditText etName = createTextField(context, "Name", item.get("name"), container);
         TextInputEditText etAge = createTextField(context, "Age", item.get("age"), container);
         etAge.setInputType(InputType.TYPE_CLASS_NUMBER);
-
         TextInputEditText etPhone = createTextField(context, "Phone", item.get("phone"), container);
         etPhone.setInputType(InputType.TYPE_CLASS_PHONE);
-
         TextInputEditText etDate =
                 createTextField(context, "Visit Date", item.get("date"), container);
         etDate.setFocusable(false);
         etDate.setOnClickListener(v -> showDateDialog(etDate));
-
         TextInputEditText etVisitPay =
                 createTextField(context, "Visit Payment", item.get("visit_payment"), container);
         etVisitPay.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-
         TextInputEditText etMeds =
                 createTextField(context, "Medicine Items", item.get("medicine_items"), container);
         TextInputEditText etMedPay =
@@ -294,7 +302,6 @@ public class VisitHistoryActivity extends AppCompatActivity {
                 createTextField(context, "Final Amount", item.get("final_amount"), container);
         etFinalAmt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
-        // Buttons
         LinearLayout btnRow = new LinearLayout(context);
         btnRow.setOrientation(LinearLayout.HORIZONTAL);
         btnRow.setGravity(Gravity.END);
@@ -387,7 +394,6 @@ public class VisitHistoryActivity extends AppCompatActivity {
                 });
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
-
         dialog.show();
     }
 
@@ -414,7 +420,6 @@ public class VisitHistoryActivity extends AppCompatActivity {
                 new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         wrapper.addView(layout);
-
         parent.addView(wrapper);
         return editText;
     }
