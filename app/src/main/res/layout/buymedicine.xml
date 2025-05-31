@@ -195,39 +195,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_margin="8dp"
+        android:layout_margin="12dp"
+        android:background="?attr/colorSurface"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:strokeColor="?attr/colorOutline">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/tv_medicine_sheet_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Select Medicines"
-                android:textColor="?attr/colorPrimary"
                 android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-                android:paddingBottom="6dp" />
+                android:textColor="?attr/colorOnSurface"
+                android:paddingBottom="8dp" />
 
-            <EditText
-                android:id="@+id/et_search_medicine"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search medicine..."
-                android:inputType="text"
-                android:padding="10dp" />
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_search_medicine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="?attr/colorOnSurface" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_medicine_list"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:paddingTop="6dp" />
+                android:paddingTop="8dp"
+                android:clipToPadding="false"
+                android:overScrollMode="ifContentScrolls" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

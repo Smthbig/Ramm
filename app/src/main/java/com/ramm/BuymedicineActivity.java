@@ -68,7 +68,7 @@ public class BuymedicineActivity extends AppCompatActivity {
     private List<String> filteredNames = new ArrayList<>();
     private MedicineAdapter adapter;
     private SharedPreferences prefs;
-    //config variable
+    // config variable
     private static final String PREFS_NAME = "AppSettings";
     private static final String DEFAULT_UPI_ID = "xxxxxxxxx@xx";
     private static final String DEFAULT_UPI_NAME = "med bill ramm health care";
@@ -253,7 +253,7 @@ public class BuymedicineActivity extends AppCompatActivity {
                                     values,
                                     "id = ?",
                                     new String[] {String.valueOf(id)});
-                    resetForm();                
+                    resetForm();
                     showToast(
                             rows > 0
                                     ? "Patient record updated successfully."
@@ -278,7 +278,6 @@ public class BuymedicineActivity extends AppCompatActivity {
         cartList.clear(); // Clear the cart data
         updateCartUI(); // Refresh the list and total
 
-        
         binding.tvTotal.setText(""); // Clear total display
         selectedMedicine = ""; // Clear selected medicine if needed
     }
@@ -487,9 +486,7 @@ public class BuymedicineActivity extends AppCompatActivity {
                             String upiId = prefs.getString("medicine_upi_id", DEFAULT_UPI_ID);
                             String upiName = prefs.getString("medicine_upi_name", DEFAULT_UPI_NAME);
                             String note = prefs.getString("medicine_upi_note", DEFAULT_UPI_NOTE);
-                            Bitmap newQr =
-                                    generateUPIQR(
-                                            upiId, upiName, finalAmount, note);
+                            Bitmap newQr = generateUPIQR(upiId, upiName, finalAmount, note);
                             if (newQr != null) {
                                 cachedQRBitmap = newQr;
                                 cachedQRAmount = finalAmount;
@@ -529,12 +526,12 @@ public class BuymedicineActivity extends AppCompatActivity {
         qrImage.setVisibility(View.GONE);
         progress.setVisibility(View.VISIBLE);
 
-//        DisplayMetrics metrics = getResources().getDisplayMetrics();
-//        int qrSize = (int) (Math.min(metrics.widthPixels, metrics.heightPixels) * 0.85);
-//
-//        qrImage.getLayoutParams().width = qrSize;
-//        qrImage.getLayoutParams().height = qrSize;
-//        qrImage.requestLayout();
+        //        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        //        int qrSize = (int) (Math.min(metrics.widthPixels, metrics.heightPixels) * 0.85);
+        //
+        //        qrImage.getLayoutParams().width = qrSize;
+        //        qrImage.getLayoutParams().height = qrSize;
+        //        qrImage.requestLayout();
 
         btnClose.setOnClickListener(v -> dialog.dismiss());
         dialog.setCancelable(true);
@@ -545,11 +542,11 @@ public class BuymedicineActivity extends AppCompatActivity {
                             Bitmap qrBitmap;
                             if (cachedQRBitmap == null || cachedQRAmount != finalAmount) {
                                 String upiId = prefs.getString("medicine_upi_id", DEFAULT_UPI_ID);
-                                String upiName = prefs.getString("medicine_upi_name", DEFAULT_UPI_NAME);
-                                String note = prefs.getString("medicine_upi_note", DEFAULT_UPI_NOTE);
-                                qrBitmap =
-                                        generateUPIQR(
-                                                 upiId, upiName, finalAmount, note);
+                                String upiName =
+                                        prefs.getString("medicine_upi_name", DEFAULT_UPI_NAME);
+                                String note =
+                                        prefs.getString("medicine_upi_note", DEFAULT_UPI_NOTE);
+                                qrBitmap = generateUPIQR(upiId, upiName, finalAmount, note);
                                 cachedQRBitmap = qrBitmap;
                                 cachedQRAmount = finalAmount;
                             } else {
@@ -568,7 +565,14 @@ public class BuymedicineActivity extends AppCompatActivity {
 
     private Bitmap generateUPIQR(String upiId, String name, float amount, String txnNote) {
         String upiUri =
-                "upi://pay?pa=" + upiId + "&pn=" + Uri.encode(name) + "&am=" + amount + "&cu=INR" + "&cu=INR&tn="
+                "upi://pay?pa="
+                        + upiId
+                        + "&pn="
+                        + Uri.encode(name)
+                        + "&am="
+                        + amount
+                        + "&cu=INR"
+                        + "&cu=INR&tn="
                         + Uri.encode(txnNote);
 
         try {
@@ -640,7 +644,11 @@ public class BuymedicineActivity extends AppCompatActivity {
 
             TextView text = new TextView(context);
             text.setTextSize(16f);
-            text.setTextColor(ContextCompat.getColor(context, android.R.color.black));
+            text.setTextColor(
+                    MaterialColors.getColor(
+                            context,
+                            com.google.android.material.R.attr.colorOnSurface,
+                            Color.WHITE));
             text.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
 
             layout.addView(text);
@@ -722,6 +730,11 @@ public class BuymedicineActivity extends AppCompatActivity {
 
                         filteredNames.addAll(filtered);
                         adapter.notifyDataSetChanged();
+
+                        // Scroll to the top of the filtered list
+                        if (!filteredNames.isEmpty()) {
+                            recyclerView.scrollToPosition(0);
+                        }
                     }
                 });
 
