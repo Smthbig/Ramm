@@ -5,6 +5,8 @@ on:
     tags:
       - 'v*'  # Runs on version tags like v1.0, v2.3.1
 
+  workflow_dispatch:  #  Enables manual trigger from GitHub Actions UI
+
 jobs:
   build:
     name: Build Release APK

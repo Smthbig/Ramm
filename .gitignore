@@ -1,5 +1,6 @@
 # AndroidIDE
 .androidide/
+/secret.properties
 
 # Built application files
 *.apk
