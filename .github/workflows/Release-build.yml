@@ -23,16 +23,16 @@ jobs:
 
       - name: Decode keystore
         run: |
-          mkdir -p Ramm/keystore
-          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > Ramm/keystore/ramm-release-key.jks
+          mkdir -p app/keystore
+          echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > app/keystore/ramm-release-key.jks
 
       - name: Configure release keystore using secrets
         run: |
-          echo "RELEASE_STORE_FILE=Ramm/keystore/ramm-release-key.jks" >> gradle.properties
+          echo "RELEASE_STORE_FILE=app/keystore/ramm-release-key.jks" >> gradle.properties
           echo "RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}" >> gradle.properties
           echo "RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}" >> gradle.properties
           echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> gradle.properties
-
+    
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
