@@ -8,7 +8,7 @@ val isCi = System.getenv("CI") != null
 
 val signingProps = if (isCi) {
     mapOf(
-        "RELEASE_STORE_FILE" to "keystore/ramm-release-key.jks",
+        "RELEASE_STORE_FILE" to "app/keystore/ramm-release-key.jks",
         "RELEASE_STORE_PASSWORD" to System.getenv("RELEASE_STORE_PASSWORD"),
         "RELEASE_KEY_ALIAS" to System.getenv("RELEASE_KEY_ALIAS"),
         "RELEASE_KEY_PASSWORD" to System.getenv("RELEASE_KEY_PASSWORD")
@@ -21,7 +21,7 @@ val signingProps = if (isCi) {
         }
     }
     mapOf(
-        "RELEASE_STORE_FILE" to (props["RELEASE_STORE_FILE"]?.toString() ?: "keystore/ramm-release-key.jks"),
+        "RELEASE_STORE_FILE" to (props["RELEASE_STORE_FILE"]?.toString() ?: "app/keystore/ramm-release-key.jks"),
         "RELEASE_STORE_PASSWORD" to props["RELEASE_STORE_PASSWORD"]?.toString(),
         "RELEASE_KEY_ALIAS" to props["RELEASE_KEY_ALIAS"]?.toString(),
         "RELEASE_KEY_PASSWORD" to props["RELEASE_KEY_PASSWORD"]?.toString()
@@ -56,7 +56,7 @@ android {
         create("release") {
             val storePath = signingProps["RELEASE_STORE_FILE"]
             if (!storePath.isNullOrBlank()) {
-                storeFile = file(storePath)
+                storeFile = file("${project.rootDir}/$storePath")
             }
             storePassword = signingProps["RELEASE_STORE_PASSWORD"]
             keyAlias = signingProps["RELEASE_KEY_ALIAS"]

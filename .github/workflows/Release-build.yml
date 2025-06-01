@@ -28,11 +28,11 @@ jobs:
 
       - name: Configure release keystore using secrets
         run: |
-          echo "RELEASE_STORE_FILE=app/keystore/ramm-release-key.jks" >> gradle.properties
-          echo "RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}" >> gradle.properties
-          echo "RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}" >> gradle.properties
-          echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> gradle.properties
-    
+          echo RELEASE_STORE_FILE=${{ github.workspace }}/app/keystore/ramm-release-key.jks >> gradle.properties
+          echo RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }} >> gradle.properties
+          echo RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }} >> gradle.properties
+          echo RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }} >> gradle.properties
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
